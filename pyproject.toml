@@ -6,12 +6,12 @@ build-backend = ["hatching.build"]
 name = "junior-python-developer"
 version = "0.1.0"
 description = "Add your description here"
-author = [
-    {name="Nikolay Zuev"},
-    ]
+authors = [{name="Nikolay Zuev"}]
 readme = "README.md"
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    
+]
 
 [tool.hatch.build]
 include = ["src/*.py"]
@@ -19,8 +19,10 @@ include = ["src/*.py"]
 [dependency-groups]
 dev = [
     "black>=26.3.1",
+    "junior-python-developer",
     "pytest>=9.0.3",
     "pytest-mock>=3.15.1",
+    "pytest-cov>=7.1.0",
 ]
 
 [tool.black]
@@ -33,7 +35,7 @@ extend-exclude = """
 """
 
 [tool.pytest.ini_options]
-pythonpath = ["."]
+pythonpath = [""]
 testpaths = ["tests"]
 addopts = "-v --strict-markers --cov=src --cov-report=html"
 markers = [
@@ -46,4 +48,12 @@ markers = [
 [tool.uv.workspace]
 members = [
     ".",
+    ".",
+    ".",
 ]
+
+[tool.uv.sources]
+junior-python-developer = { workspace = true, editable = true }
+
+[tool.hatch.build.targets.wheel.sources]
+include = ["src"]
